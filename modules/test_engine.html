@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Practice Test Engine - MemorEASE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button onclick="window.location.href='../dashboard.html'" class="hover-glow">← Back</button>
+                <div class="neon-text text-2xl font-bold">AI Practice Test Engine</div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="glass-button p-2 rounded-lg hover-scale">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Timer Bar (Hidden until test starts) -->
+    <div id="timer-bar" class="timer-bar hidden">
+        <div id="timer-bar-fill" class="timer-bar-fill" style="width: 100%"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-4 pb-12">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Test Setup Panel -->
+            <div id="setup-panel" class="glass-card p-8 rounded-3xl mb-8">
+                <h2 class="text-3xl font-bold mb-6 neon-text">Configure Your Practice Test</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Test Type -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Test Type</label>
+                        <select id="test-type" class="glass-input">
+                            <option value="SAT">SAT</option>
+                            <option value="ACT">ACT</option>
+                            <option value="PSAT">PSAT</option>
+                            <option value="PreACT">PreACT</option>
+                            <option value="AP">AP Exam</option>
+                            <option value="IB">IB Exam</option>
+                            <option value="GED">GED</option>
+                            <option value="MCA">MCA</option>
+                            <option value="Custom">Custom Test</option>
+                        </select>
+                    </div>
+
+                    <!-- Subject -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Subject</label>
+                        <select id="subject" class="glass-input">
+                            <option value="Math">Mathematics</option>
+                            <option value="Reading">Reading/English</option>
+                            <option value="Writing">Writing</option>
+                            <option value="Science">Science</option>
+                            <option value="History">History</option>
+                            <option value="CS">Computer Science</option>
+                        </select>
+                    </div>
+
+                    <!-- Difficulty -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Difficulty</label>
+                        <select id="difficulty" class="glass-input">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Hard">Hard</option>
+                            <option value="Insane">Insane Challenge Mode</option>
+                        </select>
+                    </div>
+
+                    <!-- Number of Questions -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Number of Questions</label>
+                        <input type="number" id="num-questions" class="glass-input" value="10" min="1" max="100">
+                    </div>
+
+                    <!-- Question Types -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">Question Types</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="question-type" value="multiple_choice" checked>
+                                <span>Multiple Choice</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="question-type" value="short_answer">
+                                <span>Short Answer</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="question-type" value="fill_blank">
+                                <span>Fill in Blank</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="question-type" value="free_response">
+                                <span>Free Response</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Additional Options -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">Options</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" id="show-explanations" checked>
+                                <span>Show answer explanations</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" id="strict-format">
+                                <span>Strict formatting (match official test exactly)</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" id="enable-timer">
+                                <span>Enable time limit</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Time Limit (conditional) -->
+                    <div id="time-limit-div" class="hidden">
+                        <label class="block text-lg font-semibold mb-2">Time Limit (minutes)</label>
+                        <input type="number" id="time-limit" class="glass-input" value="60" min="1">
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="mt-8">
+                    <button onclick="generateTest()" class="glass-button-primary w-full py-4 rounded-xl text-xl font-bold hover-scale">
+                        🎯 Generate Practice Test
+                    </button>
+                </div>
+            </div>
+
+            <!-- Test Display Area -->
+            <div id="test-panel" class="hidden">
+                <!-- Test Header -->
+                <div class="glass-card p-6 rounded-2xl mb-6">
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-2xl font-bold" id="test-title">Test Title</h3>
+                            <p class="text-purple-300" id="test-info">Test information</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div id="timer-display" class="text-2xl font-bold text-purple-300"></div>
+                            <button onclick="submitTest()" class="glass-button-primary px-6 py-2 rounded-lg">
+                                Submit Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Navigator (Sidebar on desktop) -->
+                <div class="flex gap-6">
+                    <!-- Questions List -->
+                    <div class="flex-1">
+                        <div id="questions-container" class="space-y-6">
+                            <!-- Questions will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Navigator Sidebar -->
+                    <div class="hidden lg:block w-64">
+                        <div class="glass-card p-4 rounded-xl sticky top-24">
+                            <h4 class="font-bold mb-4">Question Navigator</h4>
+                            <div id="question-nav" class="grid grid-cols-5 gap-2">
+                                <!-- Question buttons will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div id="results-panel" class="hidden">
+                <div class="glass-card p-8 rounded-3xl">
+                    <h2 class="text-3xl font-bold mb-6 neon-text">Test Results</h2>
+                    
+                    <!-- Score Display -->
+                    <div class="text-center mb-8">
+                        <div class="text-6xl font-bold neon-text mb-2" id="score-display">0/0</div>
+                        <div class="text-2xl text-purple-300" id="percentage-display">0%</div>
+                    </div>
+
+                    <!-- Detailed Results -->
+                    <div id="detailed-results" class="space-y-4">
+                        <!-- Results will be inserted here -->
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex gap-4 mt-8">
+                        <button onclick="resetTest()" class="glass-button-primary flex-1 py-3 rounded-lg">
+                            Take Another Test
+                        </button>
+                        <button onclick="reviewAnswers()" class="glass-button flex-1 py-3 rounded-lg">
+                            Review Answers
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/test_engine.js"></script>
+</body>
+</html>

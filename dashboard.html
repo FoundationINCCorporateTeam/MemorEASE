@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MemorEASE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="neon-text text-2xl font-bold cursor-pointer" onclick="window.location.href='index.html'">MemorEASE</div>
+                <span class="text-sm text-purple-300">Dashboard</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="glass-button p-2 rounded-lg hover-scale" title="Toggle Theme">
+                    🌙
+                </button>
+                <button onclick="openModal('settings-modal')" class="glass-button px-4 py-2 rounded-lg hover-scale">
+                    ⚙️ Settings
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-4 pb-12">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Welcome Section -->
+            <div class="glass-card p-8 rounded-3xl mb-8">
+                <h1 class="text-4xl font-bold mb-2 neon-text">Welcome to MemorEASE</h1>
+                <p class="text-xl text-purple-200">Choose a learning module to get started</p>
+            </div>
+
+            <!-- Module Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Module 1: AI Practice Test Engine -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/test_engine.html'">
+                    <div class="text-5xl mb-4">📝</div>
+                    <h3 class="text-2xl font-bold mb-3">AI Practice Tests</h3>
+                    <p class="text-purple-200 mb-4">
+                        Generate practice tests for SAT, ACT, AP, IB, GED, and more. Instant grading and explanations.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-primary">SAT</span>
+                        <span class="badge badge-primary">ACT</span>
+                        <span class="badge badge-primary">AP</span>
+                        <span class="badge badge-primary">Custom</span>
+                    </div>
+                </div>
+
+                <!-- Module 2: Guided Learning Engine -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/guided_learning.html'">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-3">Guided Learning</h3>
+                    <p class="text-purple-200 mb-4">
+                        Step-by-step lessons with AI tutoring, personalized paths, and interactive practice.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-success">Interactive</span>
+                        <span class="badge badge-success">Personalized</span>
+                    </div>
+                </div>
+
+                <!-- Module 3: AI Coding Assignments -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/coding_assignments.html'">
+                    <div class="text-5xl mb-4">💻</div>
+                    <h3 class="text-2xl font-bold mb-3">Coding Assignments</h3>
+                    <p class="text-purple-200 mb-4">
+                        Auto-generated programming tasks with instant feedback. Python, JavaScript, Java, C++, and more.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-primary">Python</span>
+                        <span class="badge badge-primary">JavaScript</span>
+                        <span class="badge badge-primary">Java</span>
+                    </div>
+                </div>
+
+                <!-- Module 4: Language Practice -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/language_practice.html'">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h3 class="text-2xl font-bold mb-3">Language Practice</h3>
+                    <p class="text-purple-200 mb-4">
+                        Master Spanish, French, German, Mandarin with vocabulary, conjugations, and interactive dialogues.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-warning">Spanish</span>
+                        <span class="badge badge-warning">French</span>
+                        <span class="badge badge-warning">German</span>
+                    </div>
+                </div>
+
+                <!-- Module 5: Math Practice -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/math_practice.html'">
+                    <div class="text-5xl mb-4">🔢</div>
+                    <h3 class="text-2xl font-bold mb-3">Math Walkthrough</h3>
+                    <p class="text-purple-200 mb-4">
+                        Step-by-step problem solving with visual explanations and adaptive difficulty.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-success">Step-by-Step</span>
+                        <span class="badge badge-success">Visual</span>
+                    </div>
+                </div>
+
+                <!-- Module 6: Career Readiness -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/career_readiness.html'">
+                    <div class="text-5xl mb-4">💼</div>
+                    <h3 class="text-2xl font-bold mb-3">Career Readiness</h3>
+                    <p class="text-purple-200 mb-4">
+                        Résumé builder, reference letters, college essay grader, and professional tools.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-primary">Résumé</span>
+                        <span class="badge badge-primary">Essays</span>
+                        <span class="badge badge-primary">Letters</span>
+                    </div>
+                </div>
+
+                <!-- Module 7: Email Tools -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="window.location.href='modules/email_tools.html'">
+                    <div class="text-5xl mb-4">✉️</div>
+                    <h3 class="text-2xl font-bold mb-3">Email Writer & Checker</h3>
+                    <p class="text-purple-200 mb-4">
+                        Write professional emails or fix existing ones with grammar checking and tone adjustment.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-warning">Professional</span>
+                        <span class="badge badge-warning">Grammar</span>
+                    </div>
+                </div>
+
+                <!-- Quick Tools Card -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="openModal('quick-tools-modal')">
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold mb-3">Quick Tools</h3>
+                    <p class="text-purple-200 mb-4">
+                        Fast access to calculators, converters, and other helpful utilities.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-success">Calculator</span>
+                        <span class="badge badge-success">Converter</span>
+                    </div>
+                </div>
+
+                <!-- User Profile Card -->
+                <div class="glass-card p-6 rounded-2xl hover-lift cursor-pointer" onclick="openModal('profile-modal')">
+                    <div class="text-5xl mb-4">👤</div>
+                    <h3 class="text-2xl font-bold mb-3">My Profile</h3>
+                    <p class="text-purple-200 mb-4">
+                        View your progress, achievements, and learning statistics.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-primary">Progress</span>
+                        <span class="badge badge-primary">Stats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay fixed inset-0 hidden items-center justify-center z-50">
+        <div class="modal-content p-8 rounded-2xl max-w-2xl w-full mx-4">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold neon-text">Settings</h2>
+                <button onclick="closeModal('settings-modal')" class="text-3xl hover-glow">&times;</button>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- API Key Setting -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2">Featherless API Key</label>
+                    <input type="password" id="api-key-input" class="glass-input" placeholder="Enter your API key">
+                    <p class="text-sm text-purple-300 mt-2">Required for AI features. Get your key at <a href="https://featherless.ai" target="_blank" class="text-purple-400 hover:text-purple-300">featherless.ai</a></p>
+                </div>
+
+                <!-- Model Selection -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2">AI Model</label>
+                    <select id="model-select" class="glass-input">
+                        <option value="Qwen/Qwen3-8B">Qwen 3 8B (Recommended)</option>
+                        <option value="meta-llama/Llama-3-8B">Llama 3 8B</option>
+                        <option value="mistralai/Mixtral-8x7B">Mixtral 8x7B</option>
+                    </select>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div>
+                    <label class="block text-lg font-semibold mb-2">Theme</label>
+                    <div class="flex space-x-4">
+                        <button onclick="setTheme('dark')" class="glass-button px-6 py-2 rounded-lg">Dark</button>
+                        <button onclick="setTheme('light')" class="glass-button px-6 py-2 rounded-lg">Light</button>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <button onclick="saveSettings()" class="glass-button-primary w-full py-3 rounded-lg text-lg font-semibold">
+                    Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal-overlay fixed inset-0 hidden items-center justify-center z-50">
+        <div class="modal-content p-8 rounded-2xl max-w-2xl w-full mx-4">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold neon-text">My Profile</h2>
+                <button onclick="closeModal('profile-modal')" class="text-3xl hover-glow">&times;</button>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">Learning Progress</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Tests Completed</span>
+                                <span class="font-bold">0</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Lessons Completed</span>
+                                <span class="font-bold">0</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Coding Assignments</span>
+                                <span class="font-bold">0</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Tools Modal -->
+    <div id="quick-tools-modal" class="modal-overlay fixed inset-0 hidden items-center justify-center z-50">
+        <div class="modal-content p-8 rounded-2xl max-w-2xl w-full mx-4">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold neon-text">Quick Tools</h2>
+                <button onclick="closeModal('quick-tools-modal')" class="text-3xl hover-glow">&times;</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="glass-card p-4 rounded-xl hover-lift cursor-pointer">
+                    <div class="text-3xl mb-2">🧮</div>
+                    <h3 class="font-bold">Calculator</h3>
+                </div>
+                <div class="glass-card p-4 rounded-xl hover-lift cursor-pointer">
+                    <div class="text-3xl mb-2">📏</div>
+                    <h3 class="font-bold">Unit Converter</h3>
+                </div>
+                <div class="glass-card p-4 rounded-xl hover-lift cursor-pointer">
+                    <div class="text-3xl mb-2">📊</div>
+                    <h3 class="font-bold">GPA Calculator</h3>
+                </div>
+                <div class="glass-card p-4 rounded-xl hover-lift cursor-pointer">
+                    <div class="text-3xl mb-2">⏱️</div>
+                    <h3 class="font-bold">Study Timer</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Load saved settings
+        function loadSettings() {
+            const apiKey = localStorage.getItem('featherless_api_key');
+            const model = localStorage.getItem('ai_model') || 'Qwen/Qwen3-8B';
+            
+            if (apiKey) {
+                document.getElementById('api-key-input').value = apiKey;
+            }
+            document.getElementById('model-select').value = model;
+        }
+
+        // Save settings
+        function saveSettings() {
+            const apiKey = document.getElementById('api-key-input').value;
+            const model = document.getElementById('model-select').value;
+            
+            if (apiKey) {
+                localStorage.setItem('featherless_api_key', apiKey);
+            }
+            localStorage.setItem('ai_model', model);
+            
+            showToast('Settings saved successfully!', 'success');
+            closeModal('settings-modal');
+        }
+
+        // Set theme
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            CONFIG.theme = theme;
+            updateThemeButton();
+            showToast(`Theme changed to ${theme}`, 'success');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+        });
+    </script>
+</body>
+</html>
