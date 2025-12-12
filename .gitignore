@@ -1,0 +1,60 @@
+# MemorEASE .gitignore
+
+# Environment and config files
+.env
+.env.local
+config.local.php
+
+# API Keys (should never be committed)
+*api_key*
+*.key
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.log
+*.cache
+
+# Build artifacts
+dist/
+build/
+node_modules/
+
+# User data (optional - uncomment if you don't want to track user data)
+# data/user_profiles.json
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# PHP specific
+vendor/
+composer.phar
+composer.lock
+
+# Test files
+phpunit.xml
+.phpunit.result.cache
