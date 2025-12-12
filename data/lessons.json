@@ -1,0 +1,43 @@
+{
+  "lessons": [],
+  "schema": {
+    "lesson_id": "string (unique identifier)",
+    "subject": "string",
+    "title": "string",
+    "user_level": "beginner|intermediate|advanced",
+    "created_at": "ISO 8601 timestamp",
+    "estimated_time_minutes": "number",
+    "steps": [
+      {
+        "step_number": "number",
+        "title": "string",
+        "instruction": "string (explanation)",
+        "example": "string (worked example)",
+        "task": "string (what user should do)",
+        "hints": ["array of strings"],
+        "resources": ["array of URLs or references"]
+      }
+    ],
+    "quizzes": [
+      {
+        "quiz_id": "string",
+        "title": "string",
+        "questions": []
+      }
+    ],
+    "knowledge_gaps": {
+      "detected": [],
+      "addressed": []
+    }
+  },
+  "subject_categories": [
+    "Mathematics",
+    "Science",
+    "English",
+    "History",
+    "Languages",
+    "Computer Science",
+    "Arts",
+    "Social Studies"
+  ]
+}

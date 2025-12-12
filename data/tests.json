@@ -1,0 +1,52 @@
+{
+  "tests": [],
+  "schema": {
+    "test_id": "string (unique identifier)",
+    "type": "SAT|ACT|AP|IB|GED|MCA|Custom",
+    "subject": "string",
+    "difficulty": "Easy|Medium|Hard|Insane",
+    "created_at": "ISO 8601 timestamp",
+    "created_by": "user_id or AI",
+    "questions": [
+      {
+        "q_id": "number",
+        "format": "multiple_choice|short_answer|fill_blank|free_response|frq|dbq|multi_select|code",
+        "question": "string (the question text)",
+        "choices": ["array of strings (for multiple choice)"],
+        "correct": "string or array (correct answer(s))",
+        "explanation": "string (optional rationale)",
+        "points": "number (scoring weight)",
+        "time_limit_seconds": "number (optional)"
+      }
+    ],
+    "settings": {
+      "time_limit_minutes": "number (optional)",
+      "show_explanations": true,
+      "strict_format": false,
+      "mixed_type": false
+    },
+    "results": []
+  },
+  "test_types": {
+    "SAT": {
+      "sections": ["Math", "Reading", "Writing"],
+      "total_questions": {"Math": 58, "Reading": 52, "Writing": 44},
+      "time_minutes": {"Math": 80, "Reading": 65, "Writing": 35}
+    },
+    "ACT": {
+      "sections": ["English", "Math", "Reading", "Science"],
+      "total_questions": {"English": 75, "Math": 60, "Reading": 40, "Science": 40},
+      "time_minutes": {"English": 45, "Math": 60, "Reading": 35, "Science": 35}
+    },
+    "AP": {
+      "subjects": [
+        "Calculus AB", "Calculus BC", "Statistics",
+        "Biology", "Chemistry", "Physics 1", "Physics 2", "Physics C",
+        "US History", "World History", "European History",
+        "English Language", "English Literature",
+        "Computer Science A", "Computer Science Principles",
+        "Psychology", "Economics", "Government"
+      ]
+    }
+  }
+}

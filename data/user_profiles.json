@@ -1,0 +1,28 @@
+{
+  "users": [],
+  "schema": {
+    "user_id": "string (unique identifier)",
+    "username": "string",
+    "email": "string",
+    "created_at": "ISO 8601 timestamp",
+    "preferences": {
+      "learning_style": "visual|auditory|procedural|conceptual",
+      "difficulty_preference": "easy|medium|hard|adaptive",
+      "subjects_of_interest": ["array of strings"],
+      "test_types": ["SAT", "ACT", "AP", "IB", "GED", "Custom"],
+      "theme": "dark|light"
+    },
+    "progress": {
+      "tests_completed": 0,
+      "lessons_completed": 0,
+      "coding_assignments_completed": 0,
+      "total_study_time_minutes": 0,
+      "achievements": []
+    },
+    "history": {
+      "recent_tests": [],
+      "recent_lessons": [],
+      "recent_assignments": []
+    }
+  }
+}

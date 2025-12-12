@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Learning Engine - MemorEASE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button onclick="window.location.href='../dashboard.html'" class="hover-glow">← Back</button>
+                <div class="neon-text text-2xl font-bold">Guided Learning Engine</div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="glass-button p-2 rounded-lg hover-scale">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-4 pb-12">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Setup Panel -->
+            <div id="setup-panel" class="glass-card p-8 rounded-3xl mb-8">
+                <h2 class="text-3xl font-bold mb-6 neon-text">Start Your Learning Journey</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Subject -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Subject</label>
+                        <select id="subject" class="glass-input">
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Science">Science</option>
+                            <option value="English">English</option>
+                            <option value="History">History</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Languages">World Languages</option>
+                            <option value="Arts">Arts</option>
+                        </select>
+                    </div>
+
+                    <!-- Level -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Your Current Level</label>
+                        <select id="level" class="glass-input">
+                            <option value="beginner">Beginner - Just starting</option>
+                            <option value="intermediate" selected>Intermediate - Have some knowledge</option>
+                            <option value="advanced">Advanced - Ready for challenges</option>
+                        </select>
+                    </div>
+
+                    <!-- Topic -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">What do you want to learn?</label>
+                        <textarea id="topic" class="glass-input" rows="3" placeholder="Describe what you want to learn or the specific topic you're working on..."></textarea>
+                    </div>
+
+                    <!-- Learning Style -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">Preferred Learning Style</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="learning-style" value="visual" checked>
+                                <span>👁️ Visual</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="learning-style" value="auditory">
+                                <span>👂 Auditory</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="learning-style" value="procedural">
+                                <span>🔧 Procedural</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="learning-style" value="conceptual">
+                                <span>💡 Conceptual</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="mt-8">
+                    <button onclick="generateLesson()" class="glass-button-primary w-full py-4 rounded-xl text-xl font-bold hover-scale">
+                        🎯 Create My Learning Path
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lesson Panel -->
+            <div id="lesson-panel" class="hidden">
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Lesson Content (Left 2/3) -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <!-- Lesson Header -->
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-2" id="lesson-title">Lesson Title</h3>
+                            <p class="text-purple-300" id="lesson-info">Lesson information</p>
+                            <div class="mt-4">
+                                <div class="progress-bar">
+                                    <div id="lesson-progress" class="progress-bar-fill" style="width: 0%"></div>
+                                </div>
+                                <p class="text-sm text-purple-300 mt-2">
+                                    <span id="current-step">0</span> of <span id="total-steps">0</span> steps completed
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Steps Container -->
+                        <div id="steps-container">
+                            <!-- Steps will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Interactive Workspace (Right 1/3) -->
+                    <div class="space-y-6">
+                        <!-- Workspace Card -->
+                        <div class="glass-card p-6 rounded-2xl sticky top-24">
+                            <h4 class="text-xl font-bold mb-4">Interactive Workspace</h4>
+                            <div id="workspace-content">
+                                <textarea id="workspace-editor" class="glass-input code-editor" rows="15" placeholder="Your work area..."></textarea>
+                                <div class="mt-4 space-y-2">
+                                    <button onclick="runWorkspace()" class="glass-button-primary w-full py-2 rounded-lg">
+                                        ▶️ Run / Check
+                                    </button>
+                                    <button onclick="getHint()" class="glass-button w-full py-2 rounded-lg">
+                                        💡 Get Hint
+                                    </button>
+                                </div>
+                                <div id="workspace-output" class="mt-4 p-4 bg-black/50 rounded-lg hidden">
+                                    <p class="text-sm font-mono text-green-400" id="output-text"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Tutor Chat -->
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h4 class="text-xl font-bold mb-4">🤖 AI Tutor</h4>
+                            <div id="chat-messages" class="space-y-3 mb-4 max-h-64 overflow-y-auto">
+                                <div class="glass-card p-3 rounded-lg">
+                                    <p class="text-sm">Hi! I'm your AI tutor. Ask me anything about this lesson!</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <input type="text" id="chat-input" class="glass-input flex-1" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') sendMessage()">
+                                <button onclick="sendMessage()" class="glass-button-primary px-4 py-2 rounded-lg">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-6 flex justify-between">
+                    <button onclick="previousStep()" id="prev-btn" class="glass-button px-6 py-3 rounded-lg" disabled>
+                        ← Previous Step
+                    </button>
+                    <button onclick="nextStep()" id="next-btn" class="glass-button-primary px-6 py-3 rounded-lg">
+                        Next Step →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Completion Panel -->
+            <div id="completion-panel" class="hidden">
+                <div class="glass-card p-8 rounded-3xl text-center">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h2 class="text-3xl font-bold mb-4 neon-text">Congratulations!</h2>
+                    <p class="text-xl text-purple-200 mb-8">You've completed this learning path!</p>
+                    
+                    <div class="glass-card p-6 rounded-xl mb-8 max-w-2xl mx-auto">
+                        <h3 class="text-xl font-bold mb-4">What You've Learned</h3>
+                        <div id="completion-summary" class="text-left space-y-2">
+                            <!-- Summary will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-4">
+                        <button onclick="takeQuiz()" class="glass-button-primary px-8 py-3 rounded-lg">
+                            Take Final Quiz
+                        </button>
+                        <button onclick="resetLesson()" class="glass-button px-8 py-3 rounded-lg">
+                            Start New Lesson
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/guided_learning.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coding Assignments - MemorEASE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button onclick="window.location.href='../dashboard.html'" class="hover-glow">← Back</button>
+                <div class="neon-text text-2xl font-bold">AI Coding Assignments</div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="glass-button p-2 rounded-lg hover-scale">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-4 pb-12">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Setup Panel -->
+            <div id="setup-panel" class="glass-card p-8 rounded-3xl mb-8">
+                <h2 class="text-3xl font-bold mb-6 neon-text">Generate Coding Assignment</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Programming Language -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Programming Language</label>
+                        <select id="language" class="glass-input">
+                            <option value="Python">Python</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Java">Java</option>
+                            <option value="C++">C++</option>
+                            <option value="C">C</option>
+                            <option value="HTML/CSS/JS">HTML/CSS/JS</option>
+                            <option value="Pseudocode">Pseudocode</option>
+                        </select>
+                    </div>
+
+                    <!-- Skill Level -->
+                    <div>
+                        <label class="block text-lg font-semibold mb-2">Skill Level</label>
+                        <select id="skill-level" class="glass-input">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate" selected>Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                    </div>
+
+                    <!-- Concept/Topic -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">What Concept Are You Learning?</label>
+                        <textarea id="concept" class="glass-input" rows="3" placeholder="e.g., loops, functions, data structures, algorithms, OOP..."></textarea>
+                    </div>
+
+                    <!-- Assignment Type -->
+                    <div class="md:col-span-2">
+                        <label class="block text-lg font-semibold mb-2">Assignment Type</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="assignment-type" value="practice" checked>
+                                <span>Practice Exercise</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="assignment-type" value="project">
+                                <span>Mini Project</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="assignment-type" value="algorithm">
+                                <span>Algorithm Challenge</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="mt-8">
+                    <button onclick="generateAssignment()" class="glass-button-primary w-full py-4 rounded-xl text-xl font-bold hover-scale">
+                        💻 Generate Assignment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Assignment Panel -->
+            <div id="assignment-panel" class="hidden">
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <!-- Instructions (Left) -->
+                    <div class="space-y-6">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-4" id="assignment-title">Assignment Title</h3>
+                            
+                            <!-- Description -->
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-2 text-purple-300">📋 Description</h4>
+                                <p id="assignment-description" class="text-purple-200"></p>
+                            </div>
+                            
+                            <!-- Requirements -->
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-2 text-purple-300">✅ Requirements</h4>
+                                <ul id="assignment-requirements" class="list-disc list-inside space-y-1 text-purple-200">
+                                    <!-- Requirements will be inserted here -->
+                                </ul>
+                            </div>
+                            
+                            <!-- Test Cases -->
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-2 text-purple-300">🧪 Test Cases</h4>
+                                <div id="test-cases" class="space-y-2">
+                                    <!-- Test cases will be inserted here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Hints -->
+                            <div>
+                                <button onclick="toggleAssignmentHints()" class="glass-button px-4 py-2 rounded-lg">
+                                    💡 Show Hints
+                                </button>
+                                <div id="assignment-hints" class="hidden mt-3 space-y-2">
+                                    <!-- Hints will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Editor (Right) -->
+                    <div class="space-y-6">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-xl font-bold">Code Editor</h4>
+                                <span class="badge badge-primary" id="language-badge">Python</span>
+                            </div>
+                            
+                            <textarea id="code-editor" class="code-editor w-full" rows="20" placeholder="// Write your code here..."></textarea>
+                            
+                            <div class="mt-4 flex gap-3">
+                                <button onclick="runCode()" class="glass-button-primary flex-1 py-3 rounded-lg font-semibold">
+                                    ▶️ Run Code
+                                </button>
+                                <button onclick="testCode()" class="glass-button flex-1 py-3 rounded-lg font-semibold">
+                                    🧪 Run Tests
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Output Console -->
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h4 class="text-xl font-bold mb-4">Output Console</h4>
+                            <div id="console-output" class="bg-black/50 rounded-lg p-4 font-mono text-sm h-64 overflow-y-auto">
+                                <p class="text-gray-400">Console output will appear here...</p>
+                            </div>
+                        </div>
+
+                        <!-- Feedback -->
+                        <div id="feedback-panel" class="glass-card p-6 rounded-2xl hidden">
+                            <h4 class="text-xl font-bold mb-4">AI Feedback</h4>
+                            <div id="feedback-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-6 flex gap-4">
+                    <button onclick="getSolution()" class="glass-button px-6 py-3 rounded-lg">
+                        💡 Show Solution
+                    </button>
+                    <button onclick="getHelpFromAI()" class="glass-button px-6 py-3 rounded-lg">
+                        🤖 Get AI Help
+                    </button>
+                    <button onclick="newAssignment()" class="glass-button px-6 py-3 rounded-lg">
+                        📝 New Assignment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/coding_assignments.js"></script>
+</body>
+</html>

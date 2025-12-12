@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemorEASE - AI-Powered Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="neon-text text-2xl font-bold">MemorEASE</div>
+                <span class="text-sm text-purple-300">by Astroyds</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="hover-glow transition-all">Features</a>
+                <a href="#modules" class="hover-glow transition-all">Modules</a>
+                <a href="#about" class="hover-glow transition-all">About</a>
+            </div>
+            <div class="flex space-x-3">
+                <button onclick="window.location.href='dashboard.html'" class="glass-button px-6 py-2 rounded-lg hover-scale">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-text-hero">
+                Learn Smarter, Not Harder
+            </h1>
+            <p class="text-xl md:text-2xl text-purple-200 mb-8 max-w-3xl mx-auto">
+                The complete AI-powered learning platform designed for every student, every subject, every goal.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="window.location.href='dashboard.html'" class="glass-button-primary px-8 py-4 rounded-xl text-lg hover-scale">
+                    Start Learning Now
+                </button>
+                <button onclick="scrollToFeatures()" class="glass-button px-8 py-4 rounded-xl text-lg hover-scale">
+                    Explore Features
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 neon-text">Why Choose MemorEASE?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature Card 1 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-3">Personalized Learning</h3>
+                    <p class="text-purple-200">Adapts to your pace, style, and goals. Perfect for struggling students and gifted learners alike.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold mb-3">AI-Powered</h3>
+                    <p class="text-purple-200">Advanced AI generates tests, grades essays, tutors concepts, and creates custom assignments.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold mb-3">Lightning Fast</h3>
+                    <p class="text-purple-200">Get instant practice tests, immediate feedback, and real-time explanations.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="text-2xl font-bold mb-3">All Subjects</h3>
+                    <p class="text-purple-200">Math, Science, English, Languages, Coding, and more. From basic to AP/IB level.</p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">🎓</div>
+                    <h3 class="text-2xl font-bold mb-3">College Ready</h3>
+                    <p class="text-purple-200">Essay grading, résumé building, reference letters, and career preparation tools.</p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="glass-card p-6 rounded-2xl hover-lift">
+                    <div class="text-4xl mb-4">🌟</div>
+                    <h3 class="text-2xl font-bold mb-3">Modern Design</h3>
+                    <p class="text-purple-200">Beautiful, intuitive interface with dark mode, animations, and responsive design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="py-20 px-4 bg-black/20">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 neon-text">Platform Modules</h2>
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">📝</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">AI Practice Test Engine</h3>
+                        <p class="text-purple-200">SAT, ACT, AP, IB, GED, and custom tests. All question types supported.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">🎯</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Guided Learning Engine</h3>
+                        <p class="text-purple-200">Step-by-step lessons with AI tutoring, personalized paths, and knowledge gap detection.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">💻</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">AI Coding Assignments</h3>
+                        <p class="text-purple-200">Python, JavaScript, Java, C++, and more. Auto-generated tasks with instant feedback.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">🌍</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Language Practice</h3>
+                        <p class="text-purple-200">Spanish, French, German, Mandarin. Vocabulary, conjugations, translation, dialogues.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">🔢</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Math Walkthrough Engine</h3>
+                        <p class="text-purple-200">Step-by-step solutions, visual explanations, and adaptive difficulty.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">💼</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Career Readiness Suite</h3>
+                        <p class="text-purple-200">Résumé generator, reference letters, essay grader, college prep tools.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover-lift">
+                    <span class="text-3xl">✉️</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Email Writer & Checker</h3>
+                        <p class="text-purple-200">Professional email writing and grammar checking with tone adjustment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl font-bold mb-6 neon-text">Built for Real Students</h2>
+            <p class="text-xl text-purple-200 mb-6">
+                MemorEASE was designed with the understanding that every student is unique. Whether you're struggling to keep up, racing ahead, or anywhere in between, our platform adapts to you.
+            </p>
+            <p class="text-lg text-purple-300">
+                We believe in efficiency over busywork, personalization over one-size-fits-all, and AI as a mentor that enhances learning without replacing the human element.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto text-center">
+            <div class="glass-card p-12 rounded-3xl max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold mb-4">Ready to Transform Your Learning?</h2>
+                <p class="text-xl text-purple-200 mb-8">Join thousands of students achieving their academic goals.</p>
+                <button onclick="window.location.href='dashboard.html'" class="glass-button-primary px-10 py-4 rounded-xl text-lg hover-scale">
+                    Launch Dashboard
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-white/10">
+        <div class="container mx-auto text-center text-purple-300">
+            <p>&copy; 2024 MemorEASE by Astroyds. All rights reserved.</p>
+            <p class="text-sm mt-2">Empowering learners everywhere.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
