@@ -94,26 +94,16 @@ function buildLessonPrompt(subject, level, topic, learningStyle) {
 
 // Parse Lesson Response
 function parseLessonResponse(response, metadata) {
-    try {
-        // Extract JSON from response
-        let jsonText = response.choices?.[0]?.text || response.text || '';
-        
-        // Try to find JSON in the response
-        const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            jsonText = jsonMatch[0];
-        }
-        
-        const data = JSON.parse(jsonText);
-        
+    const data = parseAIResponse(response);
+    
+    if (data) {
         return {
             lesson_id: generateId(),
             ...metadata,
             ...data,
             created_at: new Date().toISOString()
         };
-    } catch (error) {
-        console.error('Error parsing lesson response:', error);
+    } else {
         // Return sample lesson if parsing fails
         return createSampleLesson(metadata);
     }

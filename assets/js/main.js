@@ -306,7 +306,7 @@ function downloadAsFile(content, filename, type = 'text/plain') {
 
 // Generate Unique ID
 function generateId() {
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 // Shuffle Array
@@ -358,10 +358,30 @@ window.addEventListener('resize', debounce(() => {
     document.body.classList.toggle('mobile', isMobile);
 }, 250));
 
+// Parse AI Response (shared utility)
+function parseAIResponse(response) {
+    try {
+        // Extract JSON from response
+        let jsonText = response.choices?.[0]?.text || response.text || '';
+        
+        // Try to find JSON in the response
+        const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            jsonText = jsonMatch[0];
+        }
+        
+        return JSON.parse(jsonText);
+    } catch (error) {
+        console.error('Error parsing AI response:', error);
+        return null;
+    }
+}
+
 // Export functions for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         makeAPIRequest,
+        parseAIResponse,
         showLoading,
         hideLoading,
         showToast,

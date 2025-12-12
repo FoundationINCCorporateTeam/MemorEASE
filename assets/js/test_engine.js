@@ -117,26 +117,16 @@ function buildTestGenerationPrompt(testType, subject, difficulty, numQuestions, 
 
 // Parse Test Response
 function parseTestResponse(response, metadata) {
-    try {
-        // Extract JSON from response
-        let jsonText = response.choices?.[0]?.text || response.text || '';
-        
-        // Try to find JSON in the response
-        const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            jsonText = jsonMatch[0];
-        }
-        
-        const data = JSON.parse(jsonText);
-        
+    const data = parseAIResponse(response);
+    
+    if (data && data.questions) {
         return {
             test_id: generateId(),
             ...metadata,
             questions: data.questions || [],
             created_at: new Date().toISOString()
         };
-    } catch (error) {
-        console.error('Error parsing test response:', error);
+    } else {
         // Return sample test if parsing fails
         return createSampleTest(metadata);
     }

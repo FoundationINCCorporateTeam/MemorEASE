@@ -49,13 +49,11 @@ function buildAssignmentPrompt(language, skillLevel, concept, assignmentType) {
 }
 
 function parseAssignmentResponse(response, metadata) {
-    try {
-        let jsonText = response.choices?.[0]?.text || response.text || '';
-        const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) jsonText = jsonMatch[0];
-        const data = JSON.parse(jsonText);
+    const data = parseAIResponse(response);
+    
+    if (data) {
         return { assignment_id: generateId(), ...metadata, ...data, created_at: new Date().toISOString() };
-    } catch (error) {
+    } else {
         return createSampleAssignment(metadata);
     }
 }

@@ -147,10 +147,18 @@ html {
                  0 0 40px rgba(168, 85, 247, 0.6),
                  0 0 60px rgba(168, 85, 247, 0.4),
                  0 0 80px rgba(99, 102, 241, 0.3);
+    color: #a855f7; /* Fallback color */
     background: linear-gradient(135deg, #a855f7, #6366f1, #ec4899);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Fallback for browsers that don't support background-clip */
+@supports not (background-clip: text) {
+    .neon-text-hero {
+        color: #a855f7;
+    }
 }
 
 /* Hover Effects */
@@ -435,6 +443,7 @@ html {
 
 .timer-bar-fill {
     height: 100%;
+    width: 100%;
     background: linear-gradient(90deg, var(--success), var(--warning), var(--error));
     transition: width 1s linear;
 }
